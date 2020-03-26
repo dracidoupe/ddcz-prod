@@ -80,7 +80,7 @@ DATABASES = {
         'USER': os.environ.get('DB_USERNAME', ''),
         'PASSWORD': os.environ.get('DB_PASSWORD', ''),
         'PORT': int(os.environ.get('DB_PORT', '0')),
-        'HOST': os.environ.get('DB_HOST', 'localhost')
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
         'CONN_MAX_AGE': 60,
         'OPTIONS': {
             'charset': 'latin2'
