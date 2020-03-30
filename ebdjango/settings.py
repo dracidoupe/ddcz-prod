@@ -69,6 +69,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ebdjango.wsgi.application'
 
+if os.environ.get('SENTRY_DSN', False):
+
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(
+        dsn=os.environ['SENTRY_DSN'],
+        integrations=[DjangoIntegration()],
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=False
+    )
+
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
