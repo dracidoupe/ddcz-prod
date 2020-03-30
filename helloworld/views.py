@@ -1,16 +1,19 @@
 from json import dumps
 
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import View
 
 from django.db.utils import OperationalError
 
 from .models import ZldMain
 
 # Create your views here.
-class HomePageView(TemplateView):
+class HomePageView(View):
     def get(self, request, **kwargs):
         try:
-            return dumps([[o.rocnik, o.status] for o in ZldMain.objects.all()])
+            data = dumps([[o.rocnik, o.status] for o in ZldMain.objects.all()])
         except OperationalError:
-            return dumps([])
+            data = dumps([])
+
+        return HttpResponse(data, content_type='application/json')
