@@ -69,7 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ebdjango.wsgi.application'
 
-if os.environ.get('SENTRY_DSN', False):
+if os.environ.get('SENTRY_DSN', False) and os.environ['SENTRY_DSN'] != 'placeholder':
 
     import sentry_sdk
     from sentry_sdk.integrations.django import DjangoIntegration
